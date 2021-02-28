@@ -7,7 +7,7 @@ const burger = require("../models/burger.js");
 
 // Create all our routes
 router.get("/", (req, res) => {
-  burger.selectAl((data) => {
+  burger.selectAll((data) => {
     const hbsObject = {
       cats: data,
     };
@@ -17,7 +17,7 @@ router.get("/", (req, res) => {
 });
 
 router.post("/api/burgers", (req, res) => {
-  burger.InsertOne(
+  burger.insertOne(
     ["name", "eaten"],
     [req.body.name, req.body.eaten],
     (result) => {

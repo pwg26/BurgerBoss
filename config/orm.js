@@ -45,7 +45,9 @@ const orm = {
       cb(result);
     });
   },
-  InsertOne(table, cols, vals, cb) {
+
+  // creating new burger entry
+  insertOne(table, cols, vals, cb) {
     let queryString = `INSERT INTO ${table}`;
 
     queryString += " (";
