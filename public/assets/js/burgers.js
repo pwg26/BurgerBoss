@@ -4,13 +4,14 @@ document.addEventListener("DOMContentLoaded", (event) => {
     console.info("DOM loaded");
   }
 
-  // UPDATE/devour
-  const changeEatenBtns = document.querySelectorAll(".devour-burger");
+  // UPDATE/devoure
+  const changeEatenBtns = document.querySelectorAll(".change-eaten");
 
   // Set up the event listener for the create button
   if (changeEatenBtns) {
     changeEatenBtns.forEach((button) => {
       button.addEventListener("click", (e) => {
+        e.preventDefault();
         // Grabs the id of the element that goes by the name, "id"
         const id = e.target.getAttribute("data-id");
         const newEaten = e.target.getAttribute("data-neweaten");
@@ -32,7 +33,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
           // Check that the response is all good
           // Reload the page so the user can see the new quote
           if (response.ok) {
-            console.log(`changed sleep to: ${newEaten}`);
+            console.log(`changed statue to: ${newEaten}`);
             location.reload("/");
           } else {
             alert("something went wrong!");
@@ -52,6 +53,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
       // Grabs the value of the textarea
       const newBurger = {
         name: document.getElementById("entry").value.trim(),
+        eaten: false,
       };
 
       // Send POST request to create a new burger
@@ -76,15 +78,16 @@ document.addEventListener("DOMContentLoaded", (event) => {
   }
 
   // DELETE
-  const deleteBurgerBtns = document.querySelectorAll(".delete-burger");
+  const deleteBurgerBtns = document.querySelectorAll(".delete-eaten");
 
   // Set up the event listeners for each delete button
   deleteBurgerBtns.forEach((button) => {
     button.addEventListener("click", (e) => {
+      e.preventDefault();
       const id = e.target.getAttribute("data-id");
 
       // Send the delete request
-      fetch(`/api/cats/${id}`, {
+      fetch(`/api/burgers/${id}`, {
         method: "DELETE",
       }).then((res) => {
         console.log(res);
