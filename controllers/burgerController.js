@@ -9,7 +9,7 @@ const burger = require("../models/burger.js");
 router.get("/", (req, res) => {
   burger.selectAll((data) => {
     const hbsObject = {
-      cats: data,
+      burgers: data,
     };
     console.log(hbsObject);
     res.render("index", hbsObject);
@@ -17,14 +17,10 @@ router.get("/", (req, res) => {
 });
 
 router.post("/api/burgers", (req, res) => {
-  burger.insertOne(
-    ["name", "eaten"],
-    [req.body.name, req.body.eaten],
-    (result) => {
-      // Send back the ID of the new burger input
-      res.json({ id: result.insertId });
-    }
-  );
+  burger.insertOne(["name"], [req.body.name], (result) => {
+    // Send back the ID of the new burger input
+    res.json({ id: result.insertId });
+  });
 });
 
 router.put("/api/burgers/:id", (req, res) => {
