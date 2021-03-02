@@ -5,7 +5,7 @@ const router = express.Router();
 // Import the burgers.js to use its database functions.
 const burger = require("../models/burger.js");
 
-// Create all our routes
+// routes
 router.get("/", (req, res) => {
   burger.selectAll((data) => {
     const hbsObject = {
@@ -17,10 +17,13 @@ router.get("/", (req, res) => {
 });
 
 router.post("/api/burgers", (req, res) => {
-  burger.insertOne(["name"], [req.body.name], (result) => {
-    // Send back the ID of the new burger input
-    res.json({ id: result.insertId });
-  });
+  burger.create(
+    ["name", "eaten"],
+    [req.body.name, req.body.eaten],
+    (result) => {
+      res.json({ id: result.insertId });
+    }
+  );
 });
 
 router.put("/api/burgers/:id", (req, res) => {
@@ -28,7 +31,7 @@ router.put("/api/burgers/:id", (req, res) => {
 
   console.log("condition", condition);
 
-  cat.updateOne(
+  burger.updateOne(
     {
       eaten: req.body.eaten,
     },
@@ -40,6 +43,36 @@ router.put("/api/burgers/:id", (req, res) => {
       res.status(200).end();
     }
   );
+});
+
+router.put("/api/burgers/:id", (req, res) => {
+  const condition = `id = ${req.params.id}`;
+
+  console.log("condition", condition);
+
+  burger.updateOne(
+    {
+      eaten: req.body.eaten,
+    },
+    condition,
+    (result) => {
+      if (result.changedRows === 0) {
+        return res.status(404).end();
+      }
+      res.status(200).end();
+    }
+  );
+});
+
+router.delete("/api/burgers/:id", (req, res) => {
+  const condition = `id = ${req.params.id}`;
+
+  burger.delete(condition, (result) => {
+    if (result.affectedRows === 0) {
+      return res.status(404).end();
+    }
+    res.status(200).end();
+  });
 });
 
 // Export routes for server.js to use.
