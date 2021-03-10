@@ -8,9 +8,9 @@
 
 
     <div class="col-sm">
-      <h3 class="d-flex justify-content-center">Burgers to be devoured!</h2>
+      <h3>Burgers to be devoured!</h2>
 
-        <ul>
+        <ul class="list-unstyled">
           {{#each burgers}}
           {{#unless eaten}}
           {{> burgers/burger-block eaten=true}}
@@ -22,34 +22,37 @@
 
 
     <div class="col-sm">
-      <h3 class="d-flex justify-content-center">Add a Burger</h2>
-        <form id="create-burger">
 
-          <div class="form-group">
-            <label class="form-label d-flex justify-content-center" for="entry">Enter Burger Name Below</label>
-            <div class="d-flex justify-content-center">
-              <input class="d-flex justify-content-center" type="text" id="entry" name="burger-name">
-            </div>
-          </div>
+
+      <h3 class="d-flex justify-content-center">Add a Burger</h3>
+      <form id="create-burger">
+
+        <div class="form-group">
+          <label class="form-label d-flex justify-content-center" for="entry">Enter Burger Name Below</label>
           <div class="d-flex justify-content-center">
-            <button type="submit" class="btn btn-primary mt-1">Add Burger</button>
+            <input class="d-flex justify-content-center" type="text" id="entry" name="burger-name">
           </div>
-        </form>
+        </div>
+        <div class="d-flex justify-content-center">
+          <button type="submit" class="btn btn-primary mt-1">Add Burger</button>
+        </div>
+      </form>
 
     </div>
 
 
 
     <div class="col-sm">
-      <h3 clas="d-flex justify-content-center">Devoured burgers!</h2>
+      <h3>Devoured burgers!</h3>
 
-        <ul>
-          {{#each burgers}}
-          {{#if eaten}}
-          {{> burgers/burger-block eaten=false}}
-          {{/if}}
-          {{/each}}
-        </ul>
+
+      <ul class="list-unstyled">
+        {{#each burgers}}
+        {{#if eaten}}
+        {{> burgers/burger-block eaten=false}}
+        {{/if}}
+        {{/each}}
+      </ul>
     </div>
 
 

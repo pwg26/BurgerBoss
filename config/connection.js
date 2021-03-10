@@ -8,6 +8,7 @@ const connection = mysql.createConnection({
 
   password: "PantheR1994*",
   database: "burger_db",
+  use_env_variable: "JAWSDB_URL",
 });
 
 connection.connect((err) => {
