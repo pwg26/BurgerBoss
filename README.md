@@ -32,7 +32,11 @@ After cloning the repository to a desired location, the user will navigate to th
 
 
 ## Usage
-To use this file simply the user will type node server.js after navigating to the repositories root and traveling to http://localhost:8080. They will then type the burger they would like to eventually eat in the input bar which will then populate on the left side of the screen waiting to be devoured. The burgers to be devoured have a devour button so that when clicked, will appear on the right side of the screen of already devoured burgers. These burgers have the option to be deleted as well.
+Use the app here with heroku at https://pacific-caverns-78157.herokuapp.com/
+
+-or-
+
+To use this file simply the user will type node server.js after navigating to the repositories root and traveling to http://localhost:8000. They will then type the burger they would like to eventually eat in the input bar which will then populate on the left side of the screen waiting to be devoured. The burgers to be devoured have a devour button so that when clicked, will appear on the right side of the screen of already devoured burgers. These burgers have the option to be deleted as well.
 
 
 ## Tests
